@@ -1,13 +1,23 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-plusplus */
 /* eslint-disable prefer-template */
-// Variables
+
+// DOM Elements - Containers
 const webpage = document.querySelector(".container");
 const libraryContainer = document.querySelector(".library-container");
-const addBookButton = document.querySelector(".add-book-button");
 const overlay = document.querySelector(".overlay");
 const bookForm = document.querySelector(".book-form");
+
+// DOM Elements - Buttons
+const addBookButton = document.querySelector(".add-book-button");
 const closeButton = document.querySelector(".close-overlay");
+
+// DOM Elements - Book Log Display
+const totalBooks = document.querySelector(".total-books");
+const booksRead = document.querySelector(".books-read");
+const booksToRead = document.querySelector(".books-to-read");
+
+// Array that stores all book objects
 const myLibrary = [
   { title: "Scythe", author: "Neal Scusterman", pages: 445, isRead: true },
 ];
@@ -38,17 +48,22 @@ function clearDisplay() {
 function updateDisplay() {
   clearDisplay();
 
-  for (let i = 0; i < myLibrary.length; i++) {
-    const bookContainer = document.createElement("div");
-    bookContainer.classList.add("book-container");
-    libraryContainer.appendChild(bookContainer);
+  // Updates Book Log DOM
+  totalBooks.textContent = `Total Books: ${myLibrary.length}`;
+  booksRead.textContent = `Books Already Read: `;
+  booksToRead.textContent = `Books To Read: `;
 
+  for (let i = 0; i < myLibrary.length; i++) {
+    // Stores each attribute in a variable
     const title = myLibrary[i].title;
     const author = myLibrary[i].author;
     const pages = myLibrary[i].pages;
     const hasRead = myLibrary[i].isRead;
 
-    console.log(hasRead);
+    // Adds each Book to the DOM
+    const bookContainer = document.createElement("div");
+    bookContainer.classList.add("book-container");
+    libraryContainer.appendChild(bookContainer);
 
     const bookTitle = document.createElement("div");
     bookTitle.classList.add("book-title");
@@ -58,15 +73,24 @@ function updateDisplay() {
     bookAuthor.textContent = "By: " + author;
     const bookPages = document.createElement("div");
     bookPages.classList.add("book-pages");
-    bookPages.textContent = "Number of Pages: " + parseFloat(pages);
+    bookPages.textContent = "Number of Pages: " + pages;
     const bookHasRead = document.createElement("div");
     bookHasRead.classList.add("book-read");
-    bookHasRead.textContent = hasRead;
+    bookHasRead.textContent = "Read?: ";
+
+    // Adds Checkbox to read
+    const readCheckBox = document.createElement("input");
+    readCheckBox.setAttribute("type", "checkbox");
+
+    if (hasRead === true) {
+      readCheckBox.setAttribute("checked", "checked");
+    }
 
     bookContainer.appendChild(bookTitle);
     bookContainer.appendChild(bookAuthor);
     bookContainer.appendChild(bookPages);
     bookContainer.appendChild(bookHasRead);
+    bookHasRead.appendChild(readCheckBox);
   }
 }
 
