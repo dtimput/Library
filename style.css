@@ -12,9 +12,27 @@ body {
   );
 }
 
+.container.blurred {
+  filter: blur(5px);
+}
+
 .container {
   display: flex;
   flex-direction: column;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: aquamarine;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 3;
 }
 
 .header {
@@ -37,8 +55,8 @@ body {
 .library-container {
   display: grid;
   gap: 20px;
-  grid-template-columns: 400px 400px;
-  grid-template-rows: 200px 200px;
+  grid-template-columns: 400px 400px 400px 400px;
+  grid-template-rows: 200px 200px 200px 200px;
 
   /* temp line */
   height: 650px;
@@ -51,13 +69,15 @@ body {
   font-size: 20px;
   border: none;
   border-radius: 15px;
-  background: rgb(131, 58, 180);
+  background-color: aquamarine;
+  box-shadow: 3px 5px 5px -1px rgba(0, 0, 0, 0.75);
+  /* background: rgb(131, 58, 180);
   background: linear-gradient(
     90deg,
     rgba(131, 58, 180, 1) 0%,
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
-  );
+  ); */
 }
 
 .add-book {
@@ -65,7 +85,7 @@ body {
   padding-right: 75px;
 }
 
-.add-book button {
+.add-book-button {
   height: 60px;
   width: 60px;
   border-radius: 50px;

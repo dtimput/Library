@@ -16,27 +16,54 @@
         </div>
         <div class="counter">
           <h2>Book Log</h2>
-          <p>Total Books:</p>
-          <p>Books Already Read:</p>
-          <p>Books to Read:</p>
+          <p>Total Books: 1</p>
+          <p>Books Already Read: 1</p>
+          <p>Books to Read: 0</p>
         </div>
       </div>
       <div class="library-container">
         <div class="book-container">
-          <div class="book-title">Scythe</div>
+          <div class="book-title">Title: Scythe</div>
           <div class="book-author">By: Neal Shusterman</div>
           <div class="book-pages">Number of Pages: 445</div>
           <div class="book-read">
             <label class="switch"
               >Read?:
-              <input type="checkbox" />
+              <input type="checkbox" checked="checked" />
             </label>
           </div>
         </div>
       </div>
       <div class="footer">
-        <div class="add-book"><button>+</button></div>
+        <div class="add-book"><button class="add-book-button">+</button></div>
       </div>
     </div>
+    <div class="overlay">
+        <form class="book-form">
+          <h2>Enter Book Information</h2>
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" />
+          </div>
+          <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" />
+          </div>
+          <div>
+            <label for="pages">Pages:</label>
+            <input type="number" id="pages" name="pages" />
+          </div>
+          <div>
+            <p>Have you read it?</p>
+              <label for="true">True</label>
+              <input type="radio" id="true" name="have_read" value="true" />
+              <label for="true">False</label>
+              <input type="radio" id="false" name="have_read" value="false" />
+            </p>
+          </div>
+          <button type="submit">Submit</button>
+          <button class="close-overlay">Close</button>
+        </form>
+      </div>
   </body>
 </html>
