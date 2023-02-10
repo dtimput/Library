@@ -48,10 +48,17 @@ function clearDisplay() {
 function updateDisplay() {
   clearDisplay();
 
+  // Check array for number of objects that have isRead as true
+  const booksAlreadyRead = myLibrary.filter(
+    (isRead) => isRead.isRead === true
+  ).length;
+
   // Updates Book Log DOM
   totalBooks.textContent = `Total Books: ${myLibrary.length}`;
-  booksRead.textContent = `Books Already Read: `;
-  booksToRead.textContent = `Books To Read: `;
+  booksRead.textContent = `Books Already Read: ${booksAlreadyRead}`;
+  booksToRead.textContent = `Books To Read: ${
+    myLibrary.length - booksAlreadyRead
+  } `;
 
   for (let i = 0; i < myLibrary.length; i++) {
     // Stores each attribute in a variable
@@ -63,6 +70,7 @@ function updateDisplay() {
     // Adds each Book to the DOM
     const bookContainer = document.createElement("div");
     bookContainer.classList.add("book-container");
+    bookContainer.setAttribute("id", i);
     libraryContainer.appendChild(bookContainer);
 
     const bookTitle = document.createElement("div");
@@ -81,10 +89,23 @@ function updateDisplay() {
     // Adds Checkbox to read
     const readCheckBox = document.createElement("input");
     readCheckBox.setAttribute("type", "checkbox");
+    readCheckBox.classList.add("read-check");
 
     if (hasRead === true) {
       readCheckBox.setAttribute("checked", "checked");
     }
+
+    // Add event listener to every new object created
+    readCheckBox.addEventListener("change", (event) => {
+      const objectNumber = event.currentTarget.parentNode.parentNode.id;
+      if (readCheckBox.checked) {
+        myLibrary[objectNumber].isRead = true;
+        updateDisplay();
+      } else {
+        myLibrary[objectNumber].isRead = false;
+        updateDisplay();
+      }
+    });
 
     bookContainer.appendChild(bookTitle);
     bookContainer.appendChild(bookAuthor);
@@ -126,4 +147,5 @@ closeButton.addEventListener("click", () => {
   overlay.style.display = "none";
 });
 
+// Intitialize array with first object to DOM
 updateDisplay();
