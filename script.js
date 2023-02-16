@@ -22,12 +22,14 @@ const myLibrary = [
   { title: "Scythe", author: "Neal Scusterman", pages: 445, isRead: true },
 ];
 
-// Object Constructor
-function Book(title, author, pages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = parseFloat(pages);
-  this.isRead = isRead === "true";
+// Switched to using Class instead of an object constructor
+class Book {
+  constructor(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = parseFloat(pages);
+    this.isRead = isRead === "true";
+  }
 }
 // Add book function
 function addBookToLibrary(title, author, pages, isRead) {
